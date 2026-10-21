@@ -57,12 +57,26 @@ const accidentQuestions: Question[] = [
   { question: 'İş kazası veya meslek hastalığı sonucu sigortalının ölmesi durumunda hak sahiplerine ne bağlanabilir?', options: ['Ölüm geliri', 'Yalnızca maaş', 'Sadece izin', 'Hiçbir ödeme yapılmaz'], answer: 0, explanation: 'Yasal koşulların oluşması hâlinde sigortalının hak sahiplerine ölüm geliri bağlanabilir.' },
 ];
 
+
+const occupationalDiseaseQuestions: Question[] = [
+  { question: 'Bir hastalığın meslek hastalığı olarak kabul edilebilmesi için aşağıdakilerden hangisi gereklidir?', options: ['Yaş faktörü', 'Hastalık ile meslek arasında nedensellik bağı', 'Çalışma süresinin kısa olması', 'Hastalığın bulaşıcı olması'], answer: 1, explanation: 'Meslek hastalığı değerlendirmesinde hastalık ile yapılan iş veya çalışma koşulları arasında uygun nedensellik bağı bulunması önemlidir.' },
+  { question: 'Türkiye\'deki mevzuat listesinde meslek hastalıkları A\'dan E\'ye kaç ana grupta sınıflandırılır?', options: ['4', '5', '7', '9'], answer: 1, explanation: 'Meslek hastalıkları mevzuat listesindeki sınıflandırmada A, B, C, D ve E olmak üzere beş ana grup bulunur.' },
+  { question: 'Türkiye\'deki mevzuat listesindeki A-E gruplandırmasına göre aşağıdakilerden hangisi ayrı bir ana grup değildir?', options: ['Kimyasal', 'Fiziksel', 'Biyolojik', 'Psikolojik'], answer: 3, explanation: 'A-E sınıflandırmasında kimyasal etkenler, mesleki cilt hastalıkları, mesleki solunum sistemi hastalıkları, mesleki bulaşıcı hastalıklar ve fiziksel etkenler yer alır; psikolojik ayrı bir ana grup değildir.' },
+  { question: 'Türkiye\'de meslek hastalıkları sınıflandırmasında A Grubu aşağıdakilerden hangisidir?', options: ['Mesleki cilt hastalıkları', 'Kimyasal maddelerle olan meslek hastalıkları', 'Mesleki bulaşıcı hastalıklar', 'Fiziksel etkenlerle olan hastalıklar'], answer: 1, explanation: 'A Grubu, kimyasal maddelerle olan meslek hastalıklarını kapsar.' },
+  { question: 'C Grubu meslek hastalıkları aşağıdakilerden hangisini kapsar?', options: ['Mesleki cilt hastalıkları', 'Fiziksel etkenlerle olan hastalıklar', 'Pnömokonyozlar ve diğer mesleki solunum sistemi hastalıkları', 'Mesleki bulaşıcı hastalıklar'], answer: 2, explanation: 'C Grubu, pnömokonyozları ve diğer mesleki solunum sistemi hastalıklarını kapsar.' },
+  { question: 'Aşağıdakilerden hangisi mesleki cilt hastalıklarının oluşumunda etkili olan kimyasal faktörlerden biridir?', options: ['Deterjanlar', 'Gürültü', 'Titreşim', 'Sıcaklık'], answer: 0, explanation: 'Deterjanlar, temas ve maruziyet koşullarına bağlı olarak ciltte tahrişe veya mesleki cilt hastalıklarına yol açabilir.' },
+  { question: 'Tozlardan meydana gelen meslek hastalıklarının genel adı aşağıdakilerden hangisidir?', options: ['Dermatit', 'Pnömokonyoz', 'Ürtiker', 'Bronşit'], answer: 1, explanation: 'Bazı inorganik tozların solunması sonucu gelişen akciğer hastalıkları genel olarak pnömokonyozlar olarak adlandırılır.' },
+  { question: 'Aşağıdakilerden hangisi mesleki bulaşıcı hastalıkların oluşumunda risk faktörlerinden biridir?', options: ['Yetersiz havalandırma', 'Düzenli mola', 'Uygun aydınlatma', 'Ergonomik çalışma'], answer: 0, explanation: 'Yetersiz havalandırma, bazı bulaşıcı etkenlerin kapalı ortamlarda yayılma riskini artırabilir.' },
+  { question: 'D Grubu meslek hastalıkları aşağıdakilerden hangisidir?', options: ['Kimyasal hastalıklar', 'Mesleki cilt hastalıkları', 'Mesleki bulaşıcı hastalıklar', 'Fiziksel etkenlerle olan hastalıklar'], answer: 2, explanation: 'D Grubu, mesleki bulaşıcı hastalıkları kapsar.' },
+  { question: 'Aşağıdakilerden hangisi meslek hastalıklarının vücuda giriş yollarından biridir?', options: ['Solunum', 'Görme', 'İşitme', 'Denge'], answer: 0, explanation: 'Kimyasal ve biyolojik etkenler başta olmak üzere bazı zararlı etkenler solunum yoluyla vücuda girebilir.' },
+];
 const categories = [
   { title: 'Çalışma Mevzuatı ile İlgili Bilgiler', subtitle: 'Çalışma mevzuatı ve temel hükümler', icon: '🦺', count: '11 soru' },
   { title: 'Çalışanların Yasal Hak ve Sorumlulukları', subtitle: 'Çalışan hakları, yükümlülükler ve izinler', icon: '⚖️', count: '10 soru' },
   { title: 'Ekstra Cevaplar', subtitle: 'Ek soru-cevap ve kısa konu notları', icon: '📚', count: 'İçerik eklenecek' },
   { title: 'İşyeri Temizliği ve Düzeni', subtitle: '5S, hijyen ve çalışma alanı düzeni', icon: '🧹', count: '10 soru' },
   { title: 'İş Kazası ve Meslek Hastalığı', subtitle: 'Hukuki sonuçlar ve sosyal güvenlik', icon: '⚖️', count: '10 soru' },
+  { title: 'Meslek Hastalıklarının Sebepleri', subtitle: 'Meslek hastalıkları grupları ve risk etkenleri', icon: '🩺', count: '10 soru' },
 ];
 
 export default function App() {
@@ -71,8 +85,8 @@ export default function App() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   useEffect(() => { Alert.alert('Bilgilendirme', 'AgaçİSG uygulamasındaki soru ve cevaplar bilgilendirme ve eğitim amacıyla Chatcpt ile hazırlanmıştır. Lütfen içerikleri kontrol ederek güncel mevzuat ve işyeri talimatları doğrultusunda değerlendiriniz.\n\nİyi çalışmalar dileriz. İlker Ertürk 👍'); }, []);
   const filtered = useMemo(() => categories.filter(c => (c.title + ' ' + c.subtitle).toLocaleLowerCase('tr-TR').includes(search.toLocaleLowerCase('tr-TR'))), [search]);
-  const isQuizCategory = selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' || selected === 'Çalışanların Yasal Hak ve Sorumlulukları' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı';
-  const activeQuestions = selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? laborRightsQuestions : selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : questions;
+  const isQuizCategory = selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' || selected === 'Çalışanların Yasal Hak ve Sorumlulukları' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı' || selected === 'Meslek Hastalıklarının Sebepleri';
+  const activeQuestions = selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? laborRightsQuestions : selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : selected === 'Meslek Hastalıklarının Sebepleri' ? occupationalDiseaseQuestions : questions;
   const score = activeQuestions.reduce((total, q, i) => total + (answers[i] === q.answer ? 1 : 0), 0);
 
   return (
@@ -135,6 +149,7 @@ export default function App() {
             { title: 'Çalışanların Yasal Hak ve Sorumlulukları', questions: laborRightsQuestions },
             { title: 'İşyeri Temizliği ve Düzeni', questions: cleaningQuestions },
             { title: 'İş Kazası ve Meslek Hastalığı', questions: accidentQuestions },
+            { title: 'Meslek Hastalıklarının Sebepleri', questions: occupationalDiseaseQuestions },
           ].map(category => <View key={category.title} style={styles.answerItem}><Text style={styles.answerHeading}>{category.title}:</Text><Text style={styles.answerOnly}>{category.questions.map((q, index) => `${index + 1}:${String.fromCharCode(65 + q.answer)}`).join('  ')}</Text></View>)}<TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
         {filtered.length === 0 && !selected && <Text style={styles.empty}>Bu aramayla eşleşen kategori bulunamadı.</Text>}
         <Text style={styles.footer}>AgaçİSG • Öğren, önle, güvenle çalış.</Text>

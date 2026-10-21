@@ -1,4 +1,4 @@
-name: Build AgaçİSG Android APK
+name: Build AgaçİSG Android APK (embedded JS bundle)
 
 on:
   workflow_dispatch:
@@ -81,11 +81,13 @@ jobs:
           grep -nE 'namespace|buildFeatures|buildConfig' android/app/build.gradle
           head -n 2 android/app/src/main/java/com/agacisg/app/MainActivity.kt
           head -n 2 android/app/src/main/java/com/agacisg/app/MainApplication.kt
-      - name: Build debug APK
-        run: cd android && ./gradlew assembleDebug
+      - name: Build installable release APK with embedded JavaScript bundle
+        run: cd android && ./gradlew assembleRelease
+      - name: Verify APK exists
+        run: test -s android/app/build/outputs/apk/release/app-release.apk
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: agac-isg-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: agac-isg-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error

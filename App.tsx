@@ -58,7 +58,7 @@ const accidentQuestions: Question[] = [
 ];
 
 const categories = [
-  { title: 'Çalışma Mevzuatı ile İlgili Bilgiler', subtitle: 'Çalışma mevzuatı ve temel hükümler', icon: '🦺', count: '10 soru' },
+  { title: 'Çalışma Mevzuatı ile İlgili Bilgiler', subtitle: 'Çalışma mevzuatı ve temel hükümler', icon: '🦺', count: '11 soru' },
   { title: 'Çalışanların Yasal Hak ve Sorumlulukları', subtitle: 'Çalışan hakları, yükümlülükler ve izinler', icon: '⚖️', count: '10 soru' },
   { title: 'Ekstra Cevaplar', subtitle: 'Ek soru-cevap ve kısa konu notları', icon: '📚', count: 'İçerik eklenecek' },
   { title: 'İşyeri Temizliği ve Düzeni', subtitle: '5S, hijyen ve çalışma alanı düzeni', icon: '🧹', count: '10 soru' },

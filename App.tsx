@@ -30,6 +30,20 @@ const cleaningQuestions: Question[] = [
   { question: 'Aşağıdakilerden hangisi kişisel hijyen açısından doğrudur?', options: ['İş sonrası eller yıkanmamalıdır', 'Tehlikeli maddelerle çalışılan yerde yemek yenmelidir', 'Çalışma sonrası eller yıkanmalıdır', 'Tiner cilt temizliğinde kullanılabilir'], answer: 2, explanation: 'Çalışma sonrası eller uygun şekilde yıkanmalıdır. Tiner gibi çözücüler cilt temizliğinde kullanılmamalıdır.' },
 ];
 
+
+const accidentQuestions: Question[] = [
+  { question: '5510 sayılı Kanun bakımından bir olayın iş kazası sayılmasında aşağıdakilerden hangisi tek başına yeterli değildir?', options: ['Sigortalının işyerinde bulunduğu sırada meydana gelmesi', 'İşverenin yürüttüğü iş nedeniyle meydana gelmesi', 'İşverenin sağladığı taşıtla işe gidiş-geliş sırasında meydana gelmesi', 'Yalnızca maddi zarara yol açması'], answer: 3, explanation: 'İş kazası değerlendirmesinde kanundaki koşullar ve olayın niteliği dikkate alınır; yalnızca maddi zarar oluşması tek başına iş kazası tanımını karşılamaz.' },
+  { question: '6331 sayılı Kanun’a göre iş kazası nedir?', options: ['Sadece işyerindeki maddi hasarlar', 'İşyerinde veya işin yürütümü nedeniyle meydana gelen; ölüme yol açan ya da vücut bütünlüğünü ruhen veya bedenen engelli hâle getiren olay', 'Sadece işe gidiş geliş kazaları', 'Sadece ölümle sonuçlanan olaylar'], answer: 1, explanation: '6331 sayılı Kanun’daki tanım, işyerinde veya işin yürütümü nedeniyle meydana gelen ve ölüm ya da bedensel/ruhsal bütünlükte engellilik sonucu doğuran olayları kapsar.' },
+  { question: 'Meslek hastalığı aşağıdakilerden hangisiyle ilişkilidir?', options: ['İşin niteliği veya yürütüm şartları', 'Çalışanın hobileri', 'Çalışanın tatili', 'İş dışındaki sosyal faaliyetler'], answer: 0, explanation: 'Meslek hastalığı, yapılan işin niteliğinden veya işin yürütüm şartlarından kaynaklanan hastalıktır.' },
+  { question: 'İşveren, öğrendiği meslek hastalığını SGK’ya en geç kaç iş günü içinde bildirmelidir?', options: ['1 gün', '2 gün', '3 gün', '5 gün'], answer: 2, explanation: '5510 sayılı Kanun kapsamında işveren, kendisine bildirilen veya öğrendiği meslek hastalığını öğrenme tarihinden itibaren üç iş günü içinde SGK’ya bildirmelidir.' },
+  { question: 'İşveren tarafından sağlanan servis aracında meydana gelen kaza hangi durumda iş kazası sayılabilir?', options: ['Çalışanın kendi özel aracıyla giderken', 'İşverenin sağladığı taşıtla işe gidiş-geliş sırasında', 'Tatildeyken', 'İşten ayrıldıktan sonra'], answer: 1, explanation: 'Sigortalının işverence sağlanan taşıtla işin yapıldığı yere gidiş gelişi sırasında meydana gelen olay, kanundaki şartlarla iş kazası sayılabilir.' },
+  { question: 'Sürekli iş göremezlik geliri bağlanabilmesi için meslekte kazanma gücünün en az ne kadar azalması gerekir?', options: ['%5', '%10', '%25', '%50'], answer: 1, explanation: 'Sürekli iş göremezlik geliri için meslekte kazanma gücünün en az yüzde 10 azalmış olması gerekir.' },
+  { question: 'İş kazası veya meslek hastalığı sonucunda acı, keder ve üzüntü oluşması durumunda hangi tazminat talep edilebilir?', options: ['Maddi tazminat', 'Manevi tazminat', 'İdari para cezası', 'Cenaze ödeneği'], answer: 1, explanation: 'Koşulları oluştuğunda, yaşanan elem ve üzüntü nedeniyle manevi tazminat talep edilebilir.' },
+  { question: 'İşverenin İSG yükümlülüklerini ihlal etmesi ve bu ihlalin zarara yol açması hâlinde, somut olayın şartlarına göre aşağıdakilerden hangileri gündeme gelebilir?', options: ['İdari yaptırım', 'Tazminat sorumluluğu', 'SGK’nın rücu talebi', 'Hepsi'], answer: 3, explanation: 'Olayın şartlarına ve yasal koşullara bağlı olarak idari yaptırım, tazminat sorumluluğu ve SGK’nın rücu talebi gündeme gelebilir.' },
+  { question: 'Taksir nedir?', options: ['Suçun kasıtlı olarak işlenmesi', 'Dikkat ve özen yükümlülüğüne aykırı davranılması sonucu neticenin öngörülmeden gerçekleşmesi', 'İşçinin izin kullanması', 'İşverenin yazılı talimat vermesi'], answer: 1, explanation: 'Taksir, dikkat ve özen yükümlülüğüne aykırılık nedeniyle kanuni tanımdaki sonucun meydana gelmesidir. Sonucun öngörüldüğü hâlde istenmemesi bilinçli taksir kapsamında değerlendirilebilir.' },
+  { question: 'İş kazası veya meslek hastalığı sonucu sigortalının ölmesi durumunda hak sahiplerine ne bağlanabilir?', options: ['Ölüm geliri', 'Yalnızca maaş', 'Sadece izin', 'Hiçbir ödeme yapılmaz'], answer: 0, explanation: 'Yasal koşulların oluşması hâlinde sigortalının hak sahiplerine ölüm geliri bağlanabilir.' },
+];
+
 const categories = [
   { title: 'Temel İSG', subtitle: 'İş sağlığı ve güvenliğine giriş', icon: '🦺', count: '10 soru' },
   { title: 'Kişisel Koruyucu Donanım', subtitle: 'KKD kullanımı ve kontrolleri', icon: '⛑️', count: 'Sorular eklenecek' },
@@ -39,6 +53,7 @@ const categories = [
   { title: 'Uyarı İşaretleri', subtitle: 'İşaretler, renkler ve anlamları', icon: '⚠️', count: 'Sorular eklenecek' },
   { title: 'Ekstra Cevaplar', subtitle: 'Ek soru-cevap ve kısa konu notları', icon: '📚', count: 'İçerik eklenecek' },
   { title: 'İşyeri Temizliği ve Düzeni', subtitle: '5S, hijyen ve çalışma alanı düzeni', icon: '🧹', count: '10 soru' },
+  { title: 'İş Kazası ve Meslek Hastalığı', subtitle: 'Hukuki sonuçlar ve sosyal güvenlik', icon: '⚖️', count: '10 soru' },
 ];
 
 export default function App() {
@@ -46,7 +61,8 @@ export default function App() {
   const [selected, setSelected] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const filtered = useMemo(() => categories.filter(c => (c.title + ' ' + c.subtitle).toLocaleLowerCase('tr-TR').includes(search.toLocaleLowerCase('tr-TR'))), [search]);
-  const activeQuestions = selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : questions;
+  const isQuizCategory = selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı';
+  const activeQuestions = selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : questions;
   const score = activeQuestions.reduce((total, q, i) => total + (answers[i] === q.answer ? 1 : 0), 0);
 
   return (
@@ -72,8 +88,8 @@ export default function App() {
           </View>
         </View>
         <View style={styles.sectionHeader}>
-          <View><Text style={styles.sectionTitle}>{selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' ? selected : 'Kategoriler'}</Text><Text style={styles.sectionSub}>{selected === 'Temel İSG' ? 'Çalışma mevzuatı bilgilerini test et' : selected === 'İşyeri Temizliği ve Düzeni' ? 'Temizlik, 5S ve hijyen bilgilerini test et' : 'Öğrenmek istediğin konuyu seç'}</Text></View>
-          {selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' ? <TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backButton}>← Kategoriler</Text></TouchableOpacity> : <Text style={styles.sectionCount}>{filtered.length} konu</Text>}
+          <View><Text style={styles.sectionTitle}>{selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı' ? selected : 'Kategoriler'}</Text><Text style={styles.sectionSub}>{selected === 'Temel İSG' ? 'Çalışma mevzuatı bilgilerini test et' : selected === 'İşyeri Temizliği ve Düzeni' ? 'Temizlik, 5S ve hijyen bilgilerini test et' : selected === 'İş Kazası ve Meslek Hastalığı' ? 'İş kazası, meslek hastalığı ve hukuki sonuçları öğren' : 'Öğrenmek istediğin konuyu seç'}</Text></View>
+          {isQuizCategory ? <TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backButton}>← Kategoriler</Text></TouchableOpacity> : <Text style={styles.sectionCount}>{filtered.length} konu</Text>}
         </View>
         {!selected && <View style={styles.searchBox}><Text style={styles.searchIcon}>⌕</Text><TextInput value={search} onChangeText={setSearch} placeholder="Kategori ara..." placeholderTextColor="#819087" style={styles.searchInput} /></View>}
         {!selected && filtered.map((item) => (
@@ -83,8 +99,8 @@ export default function App() {
             <Text style={styles.chevron}>›</Text>
           </TouchableOpacity>
         ))}
-        {(selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni') && <View style={styles.quiz}>
-          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Temel İSG' ? 'Çalışma Mevzuatı İle İlgili Bilgiler-2026' : 'İşyeri Temizliği ve Düzeni-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
+        {isQuizCategory && <View style={styles.quiz}>
+          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Temel İSG' ? 'Çalışma Mevzuatı İle İlgili Bilgiler-2026' : selected === 'İşyeri Temizliği ve Düzeni' ? 'İşyeri Temizliği ve Düzeni-2026' : 'İş Kazası ve Meslek Hastalığından Doğan Hukuki Sonuçlar-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
           {activeQuestions.map((q, index) => {
             const chosen = answers[index];
             return <View key={index} style={styles.questionCard}>
@@ -104,7 +120,7 @@ export default function App() {
           })}
           <TouchableOpacity style={styles.resetButton} onPress={() => setAnswers({})}><Text style={styles.resetButtonText}>Yanıtları sıfırla ve yeniden başla</Text></TouchableOpacity>
         </View>}
-        {selected && selected !== 'Temel İSG' && <View style={styles.notice}><Text style={styles.noticeTitle}>{selected}</Text><Text style={styles.noticeText}>{selected === 'Ekstra Cevaplar' ? 'Bu bölümde ekstra soru-cevapları, kısa açıklamaları ve önemli İSG notlarını ayrı ayrı göstereceğiz. İçerikleri gönderdikçe buraya ekleyebiliriz.' : 'Bu kategorinin soru ve cevaplarını sen gönderdikçe buraya ekleyeceğiz.'}</Text><TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
+        {selected && !isQuizCategory && <View style={styles.notice}><Text style={styles.noticeTitle}>{selected}</Text><Text style={styles.noticeText}>{selected === 'Ekstra Cevaplar' ? 'Bu bölümde ekstra soru-cevapları, kısa açıklamaları ve önemli İSG notlarını ayrı ayrı göstereceğiz. İçerikleri gönderdikçe buraya ekleyebiliriz.' : 'Bu kategorinin soru ve cevaplarını sen gönderdikçe buraya ekleyeceğiz.'}</Text><TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
         {filtered.length === 0 && !selected && <Text style={styles.empty}>Bu aramayla eşleşen kategori bulunamadı.</Text>}
         <Text style={styles.footer}>AgaçİSG • Öğren, önle, güvenle çalış.</Text>
       </ScrollView>

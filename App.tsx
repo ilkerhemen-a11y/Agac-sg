@@ -124,7 +124,7 @@ export default function App() {
           </TouchableOpacity>
         ))}
         {isQuizCategory && <View style={styles.quiz}>
-          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' ? 'Çalışma Mevzuatı ile İlgili Bilgiler-2026' : selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? 'Çalışanların Yasal Hak ve Sorumlulukları-2026' : selected === 'İşyeri Temizliği ve Düzeni' ? 'İşyeri Temizliği ve Düzeni-2026' : 'İş Kazası ve Meslek Hastalığından Doğan Hukuki Sonuçlar-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
+          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' ? 'Çalışma Mevzuatı ile İlgili Bilgiler-2026' : selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? 'Çalışanların Yasal Hak ve Sorumlulukları-2026' : selected === 'İşyeri Temizliği ve Düzeni' ? 'İşyeri Temizliği ve Düzeni-2026' : selected === 'Meslek Hastalıklarının Sebepleri' ? 'Meslek Hastalıklarının Sebepleri-2026' : 'İş Kazası ve Meslek Hastalığından Doğan Hukuki Sonuçlar-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
           {activeQuestions.map((q, index) => {
             const chosen = answers[index];
             return <View key={index} style={styles.questionCard}>

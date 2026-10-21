@@ -16,6 +16,20 @@ const questions: Question[] = [
   { question: 'Çok tehlikeli sınıfta bulunan işyerlerinde İş Sağlığı ve Güvenliği Kurulu normal şartlarda en az ne sıklıkla toplanır?', options: ['Haftada bir', '15 günde bir', 'Ayda en az bir kez', 'Yılda bir'], answer: 2, explanation: 'Genel kural olarak kurul ayda en az bir kez toplanır. Mevzuattaki şartlar çerçevesinde toplantı aralığı farklılaştırılabilir.' },
 ];
 
+
+const cleaningQuestions: Question[] = [
+  { question: 'İş yerinin temiz ve düzenli tutulmasının faydalarından biri aşağıdakilerden hangisidir?', options: ['İş kazalarını artırmak', 'Verimliliği artırmak', 'Çalışma süresini uzatmak', 'Dağınıklığı artırmak'], answer: 1, explanation: 'Temiz ve düzenli çalışma alanı verimliliği destekler, tehlikeleri azaltmaya yardımcı olur.' },
+  { question: "5S yönteminin temel amacı nedir?", options: ['Çalışma ortamını daha güvenli ve düzenli hale getirmek', 'Çalışan sayısını azaltmak', 'Üretimi durdurmak', 'Malzeme kullanımını artırmak'], answer: 0, explanation: '5S, çalışma alanını düzenli, temiz, verimli ve güvenli hale getirmeyi amaçlar.' },
+  { question: "5S'in ilk adımı olan Ayıklama-Sınıflandırma (Seiri) neyi ifade eder?", options: ['Temizlik yapmak', 'Gereksiz malzemeleri ayırmak', 'Çalışanları eğitmek', 'Malzemeleri etiketlemek'], answer: 1, explanation: 'Seiri aşamasında gerekli ve gereksiz malzemeler ayrılır; gereksiz olanlar çalışma alanından uzaklaştırılır.' },
+  { question: 'Gereksiz malzemelerin belirlenmesinde kullanılan yöntemlerden biri hangisidir?', options: ['Mavi Etiket', 'Yeşil Etiket', 'Kırmızı Etiket', 'Sarı Etiket'], answer: 2, explanation: '5S uygulamalarında kırmızı etiket, gereksiz veya durumu değerlendirilmesi gereken malzemeleri belirlemek için kullanılabilir.' },
+  { question: "5S'te Düzenleme (Seiton) aşamasının amacı nedir?", options: ['Gerekli malzemelerin kolay bulunmasını sağlamak', 'Gereksiz malzemeleri artırmak', 'Çalışma alanını kirletmek', 'Malzemeleri rastgele yerleştirmek'], answer: 0, explanation: 'Seiton, gerekli araç ve malzemelerin belirli yerlerde düzenli tutulmasını ve kolay bulunmasını sağlar.' },
+  { question: 'Yağ veya su gibi kayganlaştırıcı maddeler çalışma alanına döküldüğünde ne yapılmalıdır?', options: ['Beklenmelidir', 'Üzerine başka malzeme konulmalıdır', 'Hemen temizlenmelidir', 'Görmezden gelinmelidir'], answer: 2, explanation: 'Kayma ve düşme riskini azaltmak için döküntü güvenli şekilde ve gecikmeden temizlenmeli, gerekiyorsa alan uyarı işaretleriyle çevrilmelidir.' },
+  { question: 'Acil çıkış yolları ve kapıları nasıl tutulmalıdır?', options: ['Malzemelerle doldurulmalıdır', 'Sürekli kullanılabilir durumda tutulmalıdır', 'Kilitli tutulmalıdır', 'Depolama alanı olarak kullanılmalıdır'], answer: 1, explanation: 'Acil çıkışlar ve geçiş yolları engellenmemeli, ihtiyaç anında kullanılabilir durumda tutulmalıdır.' },
+  { question: 'Elektrik kablolarının geçiş yollarında dağınık bırakılması hangi riske yol açabilir?', options: ['Takılıp düşme', 'Verimlilik artışı', 'Daha hızlı çalışma', 'Gürültünün azalması'], answer: 0, explanation: 'Geçiş yollarındaki dağınık kablolar takılma ve düşmeye; ayrıca kablo hasarı gibi başka risklere neden olabilir.' },
+  { question: 'İş kıyafetleri ile özel kıyafetlerin ayrı dolaplarda tutulmasının amacı nedir?', options: ['Dolap sayısını azaltmak', 'Kıyafetlerin daha hızlı eskimesini sağlamak', 'Kirli iş kıyafetlerinin özel kıyafetlere temasını önlemek', 'Çalışma alanını daraltmak'], answer: 2, explanation: 'Ayrı muhafaza, iş kıyafetlerindeki kir ve zararlı maddelerin özel kıyafetlere bulaşma riskini azaltır.' },
+  { question: 'Aşağıdakilerden hangisi kişisel hijyen açısından doğrudur?', options: ['İş sonrası eller yıkanmamalıdır', 'Tehlikeli maddelerle çalışılan yerde yemek yenmelidir', 'Çalışma sonrası eller yıkanmalıdır', 'Tiner cilt temizliğinde kullanılabilir'], answer: 2, explanation: 'Çalışma sonrası eller uygun şekilde yıkanmalıdır. Tiner gibi çözücüler cilt temizliğinde kullanılmamalıdır.' },
+];
+
 const categories = [
   { title: 'Temel İSG', subtitle: 'İş sağlığı ve güvenliğine giriş', icon: '🦺', count: '10 soru' },
   { title: 'Kişisel Koruyucu Donanım', subtitle: 'KKD kullanımı ve kontrolleri', icon: '⛑️', count: 'Sorular eklenecek' },
@@ -24,6 +38,7 @@ const categories = [
   { title: 'Çalışma Alanı Güvenliği', subtitle: 'Saha düzeni ve risklerin önlenmesi', icon: '🏗️', count: 'Sorular eklenecek' },
   { title: 'Uyarı İşaretleri', subtitle: 'İşaretler, renkler ve anlamları', icon: '⚠️', count: 'Sorular eklenecek' },
   { title: 'Ekstra Cevaplar', subtitle: 'Ek soru-cevap ve kısa konu notları', icon: '📚', count: 'İçerik eklenecek' },
+  { title: 'İşyeri Temizliği ve Düzeni', subtitle: '5S, hijyen ve çalışma alanı düzeni', icon: '🧹', count: '10 soru' },
 ];
 
 export default function App() {
@@ -31,7 +46,8 @@ export default function App() {
   const [selected, setSelected] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const filtered = useMemo(() => categories.filter(c => (c.title + ' ' + c.subtitle).toLocaleLowerCase('tr-TR').includes(search.toLocaleLowerCase('tr-TR'))), [search]);
-  const score = questions.reduce((total, q, i) => total + (answers[i] === q.answer ? 1 : 0), 0);
+  const activeQuestions = selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : questions;
+  const score = activeQuestions.reduce((total, q, i) => total + (answers[i] === q.answer ? 1 : 0), 0);
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -56,8 +72,8 @@ export default function App() {
           </View>
         </View>
         <View style={styles.sectionHeader}>
-          <View><Text style={styles.sectionTitle}>{selected === 'Temel İSG' ? 'Temel İSG' : 'Kategoriler'}</Text><Text style={styles.sectionSub}>{selected === 'Temel İSG' ? 'Çalışma mevzuatı bilgilerini test et' : 'Öğrenmek istediğin konuyu seç'}</Text></View>
-          {selected === 'Temel İSG' ? <TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backButton}>← Kategoriler</Text></TouchableOpacity> : <Text style={styles.sectionCount}>{filtered.length} konu</Text>}
+          <View><Text style={styles.sectionTitle}>{selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' ? selected : 'Kategoriler'}</Text><Text style={styles.sectionSub}>{selected === 'Temel İSG' ? 'Çalışma mevzuatı bilgilerini test et' : selected === 'İşyeri Temizliği ve Düzeni' ? 'Temizlik, 5S ve hijyen bilgilerini test et' : 'Öğrenmek istediğin konuyu seç'}</Text></View>
+          {selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' ? <TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backButton}>← Kategoriler</Text></TouchableOpacity> : <Text style={styles.sectionCount}>{filtered.length} konu</Text>}
         </View>
         {!selected && <View style={styles.searchBox}><Text style={styles.searchIcon}>⌕</Text><TextInput value={search} onChangeText={setSearch} placeholder="Kategori ara..." placeholderTextColor="#819087" style={styles.searchInput} /></View>}
         {!selected && filtered.map((item) => (
@@ -67,9 +83,9 @@ export default function App() {
             <Text style={styles.chevron}>›</Text>
           </TouchableOpacity>
         ))}
-        {selected === 'Temel İSG' && <View style={styles.quiz}>
-          <View style={styles.quizHeader}><Text style={styles.quizTitle}>Çalışma Mevzuatı İle İlgili Bilgiler-2026</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{questions.length} yanıtlandı  •  Doğru: {score}</Text></View>
-          {questions.map((q, index) => {
+        {(selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni') && <View style={styles.quiz}>
+          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Temel İSG' ? 'Çalışma Mevzuatı İle İlgili Bilgiler-2026' : 'İşyeri Temizliği ve Düzeni-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
+          {activeQuestions.map((q, index) => {
             const chosen = answers[index];
             return <View key={index} style={styles.questionCard}>
               <Text style={styles.questionNumber}>{index + 1}. SORU</Text>

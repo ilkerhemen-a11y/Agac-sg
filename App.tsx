@@ -130,7 +130,12 @@ export default function App() {
           })}
           <TouchableOpacity style={styles.resetButton} onPress={() => setAnswers({})}><Text style={styles.resetButtonText}>Yanıtları sıfırla ve yeniden başla</Text></TouchableOpacity>
         </View>}
-        {selected === 'Ekstra Cevaplar' && <View style={styles.extraAnswers}>{cleaningQuestions.map((q, index) => <View key={index} style={styles.answerItem}><Text style={styles.answerHeading}>{q.question}</Text><Text style={styles.answerOnly}>{q.options[q.answer]}</Text></View>)}<TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
+        {selected === 'Ekstra Cevaplar' && <View style={styles.extraAnswers}>{[
+            { title: 'Çalışma Mevzuatı ile İlgili Bilgiler', questions },
+            { title: 'Çalışanların Yasal Hak ve Sorumlulukları', questions: laborRightsQuestions },
+            { title: 'İşyeri Temizliği ve Düzeni', questions: cleaningQuestions },
+            { title: 'İş Kazası ve Meslek Hastalığı', questions: accidentQuestions },
+          ].map(category => <View key={category.title} style={styles.answerItem}><Text style={styles.answerHeading}>{category.title}:</Text><Text style={styles.answerOnly}>{category.questions.map((q, index) => `${index + 1}:${String.fromCharCode(65 + q.answer)}`).join('  ')}</Text></View>)}<TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
         {filtered.length === 0 && !selected && <Text style={styles.empty}>Bu aramayla eşleşen kategori bulunamadı.</Text>}
         <Text style={styles.footer}>AgaçİSG • Öğren, önle, güvenle çalış.</Text>
       </ScrollView>

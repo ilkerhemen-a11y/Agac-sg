@@ -32,13 +32,18 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
           path = Path('android/app/build.gradle')
-          content = path.read_text()
-          content, count = re.subn(r'namespace\\s+["\\'][^"\\']+["\\']', 'namespace "com.agacisg.app"', content, count=1)
-          if count != 1:
-              raise SystemExit('Could not find the Android namespace in android/app/build.gradle')
-          path.write_text(content)
+          lines = path.read_text().splitlines()
+          found = False
+          for index, line in enumerate(lines):
+              if line.strip().startswith('namespace '):
+                  indent = line[:len(line) - len(line.lstrip())]
+                  lines[index] = indent + 'namespace "com.agacisg.app"'
+                  found = True
+                  break
+          if not found:
+              raise SystemExit('Could not find namespace in android/app/build.gradle')
+          path.write_text('\n'.join(lines) + '\n')
           print('Android namespace forced to com.agacisg.app')
           PY
           grep -n 'namespace' android/app/build.gradle

@@ -17,6 +17,19 @@ const questions: Question[] = [
 ];
 
 
+const laborRightsQuestions: Question[] = [
+  { question: 'Çalışanların İSG eğitimlerini almasını kim sağlar?', options: ['Çalışan', 'İşveren', 'Sendika', 'Belediye'], answer: 1, explanation: 'İşveren, çalışanların iş sağlığı ve güvenliği eğitimlerini almasını sağlamakla yükümlüdür.' },
+  { question: 'Gerekli tedbirler alınıncaya kadar ciddi ve yakın tehlikeyle karşı karşıya kalan çalışan, mevzuattaki usule uygun olarak ne yapabilir?', options: ['İşyerini terk edemez', 'Çalışmaktan kaçınabilir', 'İşten çıkarılır', 'İzin kullanır'], answer: 1, explanation: 'Ciddi ve yakın tehlike durumunda çalışan, mevzuatta belirtilen usule uygun olarak çalışmaktan kaçınma hakkını kullanabilir.' },
+  { question: 'Çalışanların kişisel koruyucu donanımları nasıl kullanması gerekir?', options: ['İstediği şekilde', 'Sadece denetimde', 'Doğru şekilde', 'Gerektiğinde kullanmamalı'], answer: 2, explanation: 'Çalışanlar kendilerine sağlanan kişisel koruyucu donanımları eğitim ve talimatlara uygun şekilde kullanmalıdır.' },
+  { question: '2-50 arasında çalışanı bulunan işyerinde kaç çalışan temsilcisi bulunur?', options: ['1', '2', '3', '4'], answer: 0, explanation: 'Mevzuata göre 2-50 çalışanı bulunan işyerlerinde bir çalışan temsilcisi görevlendirilir.' },
+  { question: 'İşveren çalışanları hangi konuda bilgilendirmekle yükümlüdür?', options: ['Sağlık ve güvenlik riskleri', 'Özel hayat', 'Kişisel harcamalar', 'Tatil planları'], answer: 0, explanation: 'İşveren, çalışanları işyerindeki sağlık ve güvenlik riskleri ile koruyucu ve önleyici tedbirler hakkında bilgilendirir.' },
+  { question: 'Toplu iş sözleşmesiyle uzatılmadığı durumda deneme süresi en fazla kaç ay olabilir?', options: ['1 ay', '2 ay', '3 ay', '4 ay'], answer: 1, explanation: 'İş Kanunu’na göre deneme süresi en çok iki ay olabilir; toplu iş sözleşmesiyle dört aya kadar uzatılabilir.' },
+  { question: 'Yıllık ücretli izne hak kazanmak için en az ne kadar çalışmak gerekir?', options: ['6 ay', '8 ay', '1 yıl', '2 yıl'], answer: 2, explanation: 'İşçi, deneme süresi dahil işe başladığı günden itibaren en az bir yıl çalışınca yıllık ücretli izne hak kazanır.' },
+  { question: '7,5 saatten fazla süren çalışmalarda ara dinlenmesi en az kaç dakikadır/saattir?', options: ['15 dakika', '30 dakika', '45 dakika', '1 saat'], answer: 3, explanation: 'Günlük çalışma süresi 7,5 saati aştığında ara dinlenmesi en az bir saattir.' },
+  { question: 'Kadın işçilerin doğumdan önce ve sonra toplam analık izni normalde kaç haftadır?', options: ['12 hafta', '16 hafta', '20 hafta', '24 hafta'], answer: 1, explanation: 'Genel kural olarak doğumdan önce sekiz ve doğumdan sonra sekiz hafta olmak üzere toplam on altı hafta analık izni verilir.' },
+  { question: 'İş arama izni günde en az kaç saattir?', options: ['1 saat', '1,5 saat', '2 saat', '3 saat'], answer: 2, explanation: 'Bildirim süresi içinde işveren, işçiye yeni iş araması için çalışma saatleri içinde günde en az iki saat izin vermelidir.' },
+];
+
 const cleaningQuestions: Question[] = [
   { question: 'İş yerinin temiz ve düzenli tutulmasının faydalarından biri aşağıdakilerden hangisidir?', options: ['İş kazalarını artırmak', 'Verimliliği artırmak', 'Çalışma süresini uzatmak', 'Dağınıklığı artırmak'], answer: 1, explanation: 'Temiz ve düzenli çalışma alanı verimliliği destekler, tehlikeleri azaltmaya yardımcı olur.' },
   { question: "5S yönteminin temel amacı nedir?", options: ['Çalışma ortamını daha güvenli ve düzenli hale getirmek', 'Çalışan sayısını azaltmak', 'Üretimi durdurmak', 'Malzeme kullanımını artırmak'], answer: 0, explanation: '5S, çalışma alanını düzenli, temiz, verimli ve güvenli hale getirmeyi amaçlar.' },
@@ -45,7 +58,8 @@ const accidentQuestions: Question[] = [
 ];
 
 const categories = [
-  { title: 'Temel İSG', subtitle: 'İş sağlığı ve güvenliğine giriş', icon: '🦺', count: '10 soru' },
+  { title: 'Çalışma Mevzuatı ile İlgili Bilgiler', subtitle: 'Çalışma mevzuatı ve temel hükümler', icon: '🦺', count: '10 soru' },
+  { title: 'Çalışanların Yasal Hak ve Sorumlulukları', subtitle: 'Çalışan hakları, yükümlülükler ve izinler', icon: '⚖️', count: '10 soru' },
   { title: 'Ekstra Cevaplar', subtitle: 'Ek soru-cevap ve kısa konu notları', icon: '📚', count: 'İçerik eklenecek' },
   { title: 'İşyeri Temizliği ve Düzeni', subtitle: '5S, hijyen ve çalışma alanı düzeni', icon: '🧹', count: '10 soru' },
   { title: 'İş Kazası ve Meslek Hastalığı', subtitle: 'Hukuki sonuçlar ve sosyal güvenlik', icon: '⚖️', count: '10 soru' },
@@ -57,8 +71,8 @@ export default function App() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   useEffect(() => { Alert.alert('Bildiri', 'Lütfen soru ve cevapları kontrol ederek işleminize devam edin.'); }, []);
   const filtered = useMemo(() => categories.filter(c => (c.title + ' ' + c.subtitle).toLocaleLowerCase('tr-TR').includes(search.toLocaleLowerCase('tr-TR'))), [search]);
-  const isQuizCategory = selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı';
-  const activeQuestions = selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : questions;
+  const isQuizCategory = selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' || selected === 'Çalışanların Yasal Hak ve Sorumlulukları' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı';
+  const activeQuestions = selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? laborRightsQuestions : selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : questions;
   const score = activeQuestions.reduce((total, q, i) => total + (answers[i] === q.answer ? 1 : 0), 0);
 
   return (
@@ -84,7 +98,7 @@ export default function App() {
           </View>
         </View>
         <View style={styles.sectionHeader}>
-          <View><Text style={styles.sectionTitle}>{isQuizCategory ? selected : selected === 'Ekstra Cevaplar' ? 'Ekstra Cevaplar' : 'Kategoriler'}</Text><Text style={styles.sectionSub}>{selected === 'Temel İSG' ? 'Çalışma mevzuatı bilgilerini test et' : selected === 'İşyeri Temizliği ve Düzeni' ? 'Temizlik, 5S ve hijyen bilgilerini test et' : selected === 'İş Kazası ve Meslek Hastalığı' ? 'İş kazası, meslek hastalığı ve hukuki sonuçları öğren' : selected === 'Ekstra Cevaplar' ? 'Başlıklar altında yalnızca cevaplar' : 'Öğrenmek istediğin konuyu seç'}</Text></View>
+          <View><Text style={styles.sectionTitle}>{isQuizCategory ? selected : selected === 'Ekstra Cevaplar' ? 'Ekstra Cevaplar' : 'Kategoriler'}</Text><Text style={styles.sectionSub}>{selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' ? 'Çalışma mevzuatı bilgilerini test et' : selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? 'Çalışanların hak ve sorumluluklarını öğren' : selected === 'İşyeri Temizliği ve Düzeni' ? 'Temizlik, 5S ve hijyen bilgilerini test et' : selected === 'İş Kazası ve Meslek Hastalığı' ? 'İş kazası, meslek hastalığı ve hukuki sonuçları öğren' : selected === 'Ekstra Cevaplar' ? 'Başlıklar altında yalnızca cevaplar' : 'Öğrenmek istediğin konuyu seç'}</Text></View>
           {isQuizCategory ? <TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backButton}>← Kategoriler</Text></TouchableOpacity> : <Text style={styles.sectionCount}>{filtered.length} konu</Text>}
         </View>
         {!selected && <View style={styles.searchBox}><Text style={styles.searchIcon}>⌕</Text><TextInput value={search} onChangeText={setSearch} placeholder="Kategori ara..." placeholderTextColor="#819087" style={styles.searchInput} /></View>}
@@ -96,7 +110,7 @@ export default function App() {
           </TouchableOpacity>
         ))}
         {isQuizCategory && <View style={styles.quiz}>
-          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Temel İSG' ? 'Çalışma Mevzuatı İle İlgili Bilgiler-2026' : selected === 'İşyeri Temizliği ve Düzeni' ? 'İşyeri Temizliği ve Düzeni-2026' : 'İş Kazası ve Meslek Hastalığından Doğan Hukuki Sonuçlar-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
+          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' ? 'Çalışma Mevzuatı ile İlgili Bilgiler-2026' : selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? 'Çalışanların Yasal Hak ve Sorumlulukları-2026' : selected === 'İşyeri Temizliği ve Düzeni' ? 'İşyeri Temizliği ve Düzeni-2026' : 'İş Kazası ve Meslek Hastalığından Doğan Hukuki Sonuçlar-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
           {activeQuestions.map((q, index) => {
             const chosen = answers[index];
             return <View key={index} style={styles.questionCard}>

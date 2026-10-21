@@ -28,12 +28,13 @@ jobs:
         run: npx expo prebuild --platform android --no-install
         env:
           CI: '1'
-      - name: Verify Android namespace
+      - name: Verify Android namespace and generated config
         run: |
           python3 - <<'PY'
           from pathlib import Path
           path = Path('android/app/build.gradle')
-          lines = path.read_text().splitlines()
+          content = path.read_text()
+          lines = content.splitlines()
           found = False
           for index, line in enumerate(lines):
               if line.strip().startswith('namespace '):
@@ -43,10 +44,22 @@ jobs:
                   break
           if not found:
               raise SystemExit('Could not find namespace in android/app/build.gradle')
-          path.write_text('\n'.join(lines) + '\n')
-          print('Android namespace forced to com.agacisg.app')
+          content = '\n'.join(lines) + '\n'
+          if 'buildFeatures {' not in content:
+              marker = 'android {'
+              if marker not in content:
+                  raise SystemExit('Could not find android block in android/app/build.gradle')
+              content = content.replace(marker, marker + '\n    buildFeatures {\n        buildConfig = true\n    }', 1)
+          elif 'buildConfig = true' not in content and 'buildConfig true' not in content:
+              content = content.replace('buildFeatures {', 'buildFeatures {\n        buildConfig = true', 1)
+          path.write_text(content)
+          print('Namespace set and BuildConfig generation enabled')
           PY
-          grep -n 'namespace' android/app/build.gradle
+          grep -nE 'namespace|buildFeatures|buildConfig' android/app/build.gradle
+          echo '--- MainActivity package ---'
+          sed -n '1,45p' android/app/src/main/java/com/agacisg/app/MainActivity.kt
+          echo '--- MainApplication package ---'
+          sed -n '1,55p' android/app/src/main/java/com/agacisg/app/MainApplication.kt
       - name: Build debug APK
         run: cd android && ./gradlew assembleDebug
       - name: Upload APK

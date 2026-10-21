@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Alert, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 type Question = { question: string; options: string[]; answer: number; explanation: string };
 
@@ -46,11 +46,6 @@ const accidentQuestions: Question[] = [
 
 const categories = [
   { title: 'Temel İSG', subtitle: 'İş sağlığı ve güvenliğine giriş', icon: '🦺', count: '10 soru' },
-  { title: 'Kişisel Koruyucu Donanım', subtitle: 'KKD kullanımı ve kontrolleri', icon: '⛑️', count: 'Sorular eklenecek' },
-  { title: 'Acil Durumlar', subtitle: 'Yangın, tahliye ve ilk adımlar', icon: '🚨', count: 'Sorular eklenecek' },
-  { title: 'İş Ekipmanları', subtitle: 'Güvenli kullanım ve kontroller', icon: '🛠️', count: 'Sorular eklenecek' },
-  { title: 'Çalışma Alanı Güvenliği', subtitle: 'Saha düzeni ve risklerin önlenmesi', icon: '🏗️', count: 'Sorular eklenecek' },
-  { title: 'Uyarı İşaretleri', subtitle: 'İşaretler, renkler ve anlamları', icon: '⚠️', count: 'Sorular eklenecek' },
   { title: 'Ekstra Cevaplar', subtitle: 'Ek soru-cevap ve kısa konu notları', icon: '📚', count: 'İçerik eklenecek' },
   { title: 'İşyeri Temizliği ve Düzeni', subtitle: '5S, hijyen ve çalışma alanı düzeni', icon: '🧹', count: '10 soru' },
   { title: 'İş Kazası ve Meslek Hastalığı', subtitle: 'Hukuki sonuçlar ve sosyal güvenlik', icon: '⚖️', count: '10 soru' },
@@ -60,6 +55,7 @@ export default function App() {
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, number>>({});
+  useEffect(() => { Alert.alert('Bildiri', 'Lütfen soru ve cevapları kontrol ederek işleminize devam edin.'); }, []);
   const filtered = useMemo(() => categories.filter(c => (c.title + ' ' + c.subtitle).toLocaleLowerCase('tr-TR').includes(search.toLocaleLowerCase('tr-TR'))), [search]);
   const isQuizCategory = selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı';
   const activeQuestions = selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : questions;
@@ -88,7 +84,7 @@ export default function App() {
           </View>
         </View>
         <View style={styles.sectionHeader}>
-          <View><Text style={styles.sectionTitle}>{selected === 'Temel İSG' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı' ? selected : 'Kategoriler'}</Text><Text style={styles.sectionSub}>{selected === 'Temel İSG' ? 'Çalışma mevzuatı bilgilerini test et' : selected === 'İşyeri Temizliği ve Düzeni' ? 'Temizlik, 5S ve hijyen bilgilerini test et' : selected === 'İş Kazası ve Meslek Hastalığı' ? 'İş kazası, meslek hastalığı ve hukuki sonuçları öğren' : 'Öğrenmek istediğin konuyu seç'}</Text></View>
+          <View><Text style={styles.sectionTitle}>{isQuizCategory ? selected : selected === 'Ekstra Cevaplar' ? 'Ekstra Cevaplar' : 'Kategoriler'}</Text><Text style={styles.sectionSub}>{selected === 'Temel İSG' ? 'Çalışma mevzuatı bilgilerini test et' : selected === 'İşyeri Temizliği ve Düzeni' ? 'Temizlik, 5S ve hijyen bilgilerini test et' : selected === 'İş Kazası ve Meslek Hastalığı' ? 'İş kazası, meslek hastalığı ve hukuki sonuçları öğren' : selected === 'Ekstra Cevaplar' ? 'Başlıklar altında yalnızca cevaplar' : 'Öğrenmek istediğin konuyu seç'}</Text></View>
           {isQuizCategory ? <TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backButton}>← Kategoriler</Text></TouchableOpacity> : <Text style={styles.sectionCount}>{filtered.length} konu</Text>}
         </View>
         {!selected && <View style={styles.searchBox}><Text style={styles.searchIcon}>⌕</Text><TextInput value={search} onChangeText={setSearch} placeholder="Kategori ara..." placeholderTextColor="#819087" style={styles.searchInput} /></View>}
@@ -120,7 +116,7 @@ export default function App() {
           })}
           <TouchableOpacity style={styles.resetButton} onPress={() => setAnswers({})}><Text style={styles.resetButtonText}>Yanıtları sıfırla ve yeniden başla</Text></TouchableOpacity>
         </View>}
-        {selected && !isQuizCategory && <View style={styles.notice}><Text style={styles.noticeTitle}>{selected}</Text><Text style={styles.noticeText}>{selected === 'Ekstra Cevaplar' ? 'Bu bölümde ekstra soru-cevapları, kısa açıklamaları ve önemli İSG notlarını ayrı ayrı göstereceğiz. İçerikleri gönderdikçe buraya ekleyebiliriz.' : 'Bu kategorinin soru ve cevaplarını sen gönderdikçe buraya ekleyeceğiz.'}</Text><TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
+        {selected === 'Ekstra Cevaplar' && <View style={styles.extraAnswers}>{cleaningQuestions.map((q, index) => <View key={index} style={styles.answerItem}><Text style={styles.answerHeading}>{q.question}</Text><Text style={styles.answerOnly}>{q.options[q.answer]}</Text></View>)}<TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
         {filtered.length === 0 && !selected && <Text style={styles.empty}>Bu aramayla eşleşen kategori bulunamadı.</Text>}
         <Text style={styles.footer}>AgaçİSG • Öğren, önle, güvenle çalış.</Text>
       </ScrollView>
@@ -139,5 +135,5 @@ const styles = StyleSheet.create({
   category:{flexDirection:'row',alignItems:'center',marginHorizontal:20,marginBottom:10,padding:13,backgroundColor:'#FFFFFF',borderRadius:17,borderWidth:1,borderColor:'#E7EDE8'},categoryIcon:{width:49,height:49,borderRadius:15,backgroundColor:'#EAF4ED',alignItems:'center',justifyContent:'center'},categoryEmoji:{fontSize:23},categoryInfo:{flex:1,marginLeft:13},categoryTitle:{fontSize:14,fontWeight:'800',color:'#19382B'},categorySubtitle:{fontSize:11,color:'#75847B',marginTop:4},categoryCount:{fontSize:10,color:'#3D815D',fontWeight:'700',marginTop:7},chevron:{fontSize:27,color:'#71907D',paddingHorizontal:5},
   quiz:{marginHorizontal:16},quizHeader:{padding:17,backgroundColor:'#E1F1E6',borderRadius:17,marginBottom:12},quizTitle:{fontSize:17,lineHeight:23,fontWeight:'900',color:'#18382B'},quizProgress:{fontSize:11,color:'#28734F',fontWeight:'700',marginTop:8},
   questionCard:{padding:15,backgroundColor:'#FFFFFF',borderRadius:17,borderWidth:1,borderColor:'#E3EBE5',marginBottom:12},questionNumber:{fontSize:10,letterSpacing:1,fontWeight:'900',color:'#3D815D',marginBottom:8},questionText:{fontSize:15,lineHeight:22,fontWeight:'800',color:'#19382B',marginBottom:12},option:{flexDirection:'row',alignItems:'center',padding:11,borderRadius:12,borderWidth:1,borderColor:'#E5EBE6',marginBottom:8,backgroundColor:'#FBFCFB'},optionCorrect:{borderColor:'#27945D',backgroundColor:'#E7F7EC'},optionWrong:{borderColor:'#D85B55',backgroundColor:'#FFF0EF'},optionLetter:{width:26,height:26,borderRadius:9,overflow:'hidden',textAlign:'center',textAlignVertical:'center',fontSize:12,fontWeight:'900',color:'#466252',backgroundColor:'#EAF1EC',marginRight:10,paddingTop:4},optionLetterCorrect:{backgroundColor:'#27945D',color:'#FFFFFF'},optionText:{flex:1,fontSize:12,lineHeight:18,color:'#31473A'},optionTextCorrect:{fontWeight:'700',color:'#1B6C3D'},explanation:{backgroundColor:'#F2F7F3',padding:11,borderRadius:11,marginTop:2},explanationTitle:{fontSize:12,fontWeight:'900',color:'#216C43'},explanationText:{fontSize:11,lineHeight:17,color:'#4D6656',marginTop:4},resetButton:{backgroundColor:'#0B3D2E',borderRadius:14,padding:15,alignItems:'center',marginVertical:5},resetButtonText:{fontSize:13,fontWeight:'800',color:'#FFFFFF'},
-  notice:{marginHorizontal:20,marginTop:3,marginBottom:10,padding:16,borderRadius:15,backgroundColor:'#FFF4DC',borderWidth:1,borderColor:'#F1D69A'},noticeTitle:{fontWeight:'800',fontSize:14,color:'#6B4A0A'},noticeText:{fontSize:12,lineHeight:18,color:'#765D2D',marginTop:6},backLink:{fontSize:12,fontWeight:'800',color:'#28734F',marginTop:12},empty:{textAlign:'center',color:'#75847B',padding:24},footer:{textAlign:'center',fontSize:11,color:'#829087',marginTop:16}
+  extraAnswers:{marginHorizontal:20,marginTop:3,marginBottom:10},answerItem:{padding:15,backgroundColor:'#FFFFFF',borderRadius:14,borderWidth:1,borderColor:'#E3EBE5',marginBottom:10},answerHeading:{fontSize:13,lineHeight:19,fontWeight:'800',color:'#19382B'},answerOnly:{fontSize:13,lineHeight:19,color:'#28734F',fontWeight:'700',marginTop:8},backLink:{fontSize:12,fontWeight:'800',color:'#28734F',marginTop:12},empty:{textAlign:'center',color:'#75847B',padding:24},footer:{textAlign:'center',fontSize:11,color:'#829087',marginTop:16}
 });

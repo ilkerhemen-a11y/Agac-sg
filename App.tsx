@@ -23,6 +23,7 @@ const categories = [
   { title: 'İş Ekipmanları', subtitle: 'Güvenli kullanım ve kontroller', icon: '🛠️', count: 'Sorular eklenecek' },
   { title: 'Çalışma Alanı Güvenliği', subtitle: 'Saha düzeni ve risklerin önlenmesi', icon: '🏗️', count: 'Sorular eklenecek' },
   { title: 'Uyarı İşaretleri', subtitle: 'İşaretler, renkler ve anlamları', icon: '⚠️', count: 'Sorular eklenecek' },
+  { title: 'Ekstra Cevaplar', subtitle: 'Ek soru-cevap ve kısa konu notları', icon: '📚', count: 'İçerik eklenecek' },
 ];
 
 export default function App() {
@@ -87,7 +88,7 @@ export default function App() {
           })}
           <TouchableOpacity style={styles.resetButton} onPress={() => setAnswers({})}><Text style={styles.resetButtonText}>Yanıtları sıfırla ve yeniden başla</Text></TouchableOpacity>
         </View>}
-        {selected && selected !== 'Temel İSG' && <View style={styles.notice}><Text style={styles.noticeTitle}>{selected}</Text><Text style={styles.noticeText}>Bu kategorinin soru ve cevaplarını sen gönderdikçe buraya ekleyeceğiz.</Text><TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
+        {selected && selected !== 'Temel İSG' && <View style={styles.notice}><Text style={styles.noticeTitle}>{selected}</Text><Text style={styles.noticeText}>{selected === 'Ekstra Cevaplar' ? 'Bu bölümde ekstra soru-cevapları, kısa açıklamaları ve önemli İSG notlarını ayrı ayrı göstereceğiz. İçerikleri gönderdikçe buraya ekleyebiliriz.' : 'Bu kategorinin soru ve cevaplarını sen gönderdikçe buraya ekleyeceğiz.'}</Text><TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
         {filtered.length === 0 && !selected && <Text style={styles.empty}>Bu aramayla eşleşen kategori bulunamadı.</Text>}
         <Text style={styles.footer}>AgaçİSG • Öğren, önle, güvenle çalış.</Text>
       </ScrollView>

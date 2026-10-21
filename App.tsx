@@ -70,6 +70,20 @@ const occupationalDiseaseQuestions: Question[] = [
   { question: 'D Grubu meslek hastalıkları aşağıdakilerden hangisidir?', options: ['Kimyasal hastalıklar', 'Mesleki cilt hastalıkları', 'Mesleki bulaşıcı hastalıklar', 'Fiziksel etkenlerle olan hastalıklar'], answer: 2, explanation: 'D Grubu, mesleki bulaşıcı hastalıkları kapsar.' },
   { question: 'Aşağıdakilerden hangisi meslek hastalıklarının vücuda giriş yollarından biridir?', options: ['Solunum', 'Görme', 'İşitme', 'Denge'], answer: 0, explanation: 'Kimyasal ve biyolojik etkenler başta olmak üzere bazı zararlı etkenler solunum yoluyla vücuda girebilir.' },
 ];
+
+const bioPsychosocialQuestions: Question[] = [
+  { question: 'Aşağıdakilerden hangisi biyolojik etkenlerden biridir?', options: ['Gürültü', 'Mikroorganizmalar', 'Titreşim', 'Aydınlatma'], answer: 1, explanation: 'Bakteri, virüs, mantar ve parazit gibi mikroorganizmalar biyolojik etkenler arasında yer alır.' },
+  { question: 'Biyolojik etkenler kaç risk grubunda sınıflandırılır?', options: ['2', '3', '4', '5'], answer: 2, explanation: 'Biyolojik etkenler, insan sağlığına oluşturdukları enfeksiyon riski esas alınarak dört risk grubunda sınıflandırılır.' },
+  { question: 'Grup 4 biyolojik etkenlerin özelliği aşağıdakilerden hangisidir?', options: ['İnsanlarda hastalık oluşturmaz.', 'Topluma yayılma riski yoktur.', 'Etkili korunma ve tedavi yöntemleri vardır.', 'Etkili korunma ve tedavi yöntemleri bulunmamaktadır.'], answer: 3, explanation: 'Grup 4 etkenler ağır hastalığa neden olabilir, çalışanlar için ciddi tehlike oluşturur ve topluma yayılma riski yüksek olabilir; genellikle etkili korunma veya tedavi yöntemi bulunmaz.' },
+  { question: 'Biyolojik risk bulunan çalışma alanlarında aşağıdakilerden hangisi yapılmamalıdır?', options: ['Koruyucu giysi kullanmak', 'Hijyen kurallarına uymak', 'Yiyecek ve içecek tüketmek', 'Uygun temizlik malzemeleri kullanmak'], answer: 2, explanation: 'Biyolojik etkenlere maruz kalma riski olan alanlarda yiyecek ve içecek tüketilmemelidir.' },
+  { question: 'Biyolojik etkenlerle çalışmaya başlamadan önce çalışanlara ne verilmelidir?', options: ['Eğitim', 'İzin', 'Prim', 'Tatil'], answer: 0, explanation: 'Çalışanlara biyolojik riskler, korunma yolları, hijyen ve acil durum uygulamaları hakkında uygun eğitim verilmelidir.' },
+  { question: 'Aşağıdakilerden hangisi psikososyal risk etmenlerinden biridir?', options: ['İş yükü', 'Gürültü', 'Toz', 'Titreşim'], answer: 0, explanation: 'Aşırı veya yetersiz iş yükü, zaman baskısı ve iş üzerindeki kontrol eksikliği psikososyal risk etmenleri olabilir.' },
+  { question: 'Psikososyal risk sonucunda ortaya çıkabilecek önemli durumlardan biri aşağıdakilerden hangisidir?', options: ['Stres', 'Paslanma', 'Korozyon', 'Elektrik kaçağı'], answer: 0, explanation: 'Olumsuz psikososyal çalışma koşulları çalışanlarda stres ve benzeri ruhsal zorlanmalara yol açabilir.' },
+  { question: 'Aşağıdakilerden hangisi mobbing (yıldırma) davranışına örnektir?', options: ['Çalışana destek olmak', 'Etkili iletişim kurmak', 'Sürekli aşağılama ve hakaret', 'Çalışanı bilgilendirmek'], answer: 2, explanation: 'Bir çalışana yönelik sistematik ve tekrarlayan aşağılama, hakaret veya dışlama yıldırma davranışlarına örnek olabilir.' },
+  { question: 'İş yerindeki stresle başa çıkmak için aşağıdakilerden hangisi önerilmektedir?', options: ['Sosyal destekten uzaklaşmak', 'Etkili iletişim becerileri geliştirmek', 'Problemleri görmezden gelmek', 'İş arkadaşlarından uzak durmak'], answer: 1, explanation: 'Etkili iletişim, sorunları uygun biçimde ele alma ve gerektiğinde sosyal destek alma stresle başa çıkmayı kolaylaştırabilir.' },
+  { question: 'İş yerinde yaşanan her çatışma için aşağıdakilerden hangisi doğrudur?', options: ['Kesinlikle mobbingdir', 'Kesinlikle fiziksel şiddettir.', 'Her çatışma yıldırma değildir.', 'Her çatışma iş kazasıdır.'], answer: 2, explanation: 'Her anlaşmazlık mobbing sayılmaz; yıldırma değerlendirmesinde davranışların niteliği, tekrarı ve sistematik olup olmadığı gibi unsurlar dikkate alınır.' },
+];
+
 const categories = [
   { title: 'Çalışma Mevzuatı ile İlgili Bilgiler', subtitle: 'Çalışma mevzuatı ve temel hükümler', icon: '🦺', count: '11 soru' },
   { title: 'Çalışanların Yasal Hak ve Sorumlulukları', subtitle: 'Çalışan hakları, yükümlülükler ve izinler', icon: '⚖️', count: '10 soru' },
@@ -77,6 +91,7 @@ const categories = [
   { title: 'İşyeri Temizliği ve Düzeni', subtitle: '5S, hijyen ve çalışma alanı düzeni', icon: '🧹', count: '10 soru' },
   { title: 'İş Kazası ve Meslek Hastalığı', subtitle: 'Hukuki sonuçlar ve sosyal güvenlik', icon: '⚖️', count: '10 soru' },
   { title: 'Meslek Hastalıklarının Sebepleri', subtitle: 'Meslek hastalıkları grupları ve risk etkenleri', icon: '🩺', count: '10 soru' },
+  { title: 'Biyolojik ve Psikososyal Risk Etmenleri', subtitle: 'Biyolojik tehlikeler, stres ve yıldırma', icon: '🧬', count: '10 soru' },
 ];
 
 export default function App() {
@@ -85,8 +100,8 @@ export default function App() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   useEffect(() => { Alert.alert('Bilgilendirme', 'AgaçİSG uygulamasındaki soru ve cevaplar bilgilendirme ve eğitim amacıyla Chatcpt ile hazırlanmıştır. Lütfen içerikleri kontrol ederek güncel mevzuat ve işyeri talimatları doğrultusunda değerlendiriniz.\n\nİyi çalışmalar dileriz. İlker Ertürk 👍'); }, []);
   const filtered = useMemo(() => categories.filter(c => (c.title + ' ' + c.subtitle).toLocaleLowerCase('tr-TR').includes(search.toLocaleLowerCase('tr-TR'))), [search]);
-  const isQuizCategory = selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' || selected === 'Çalışanların Yasal Hak ve Sorumlulukları' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı' || selected === 'Meslek Hastalıklarının Sebepleri';
-  const activeQuestions = selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? laborRightsQuestions : selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : selected === 'Meslek Hastalıklarının Sebepleri' ? occupationalDiseaseQuestions : questions;
+  const isQuizCategory = selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' || selected === 'Çalışanların Yasal Hak ve Sorumlulukları' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı' || selected === 'Meslek Hastalıklarının Sebepleri' || selected === 'Biyolojik ve Psikososyal Risk Etmenleri';
+  const activeQuestions = selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? laborRightsQuestions : selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : selected === 'Meslek Hastalıklarının Sebepleri' ? occupationalDiseaseQuestions : selected === 'Biyolojik ve Psikososyal Risk Etmenleri' ? bioPsychosocialQuestions : questions;
   const score = activeQuestions.reduce((total, q, i) => total + (answers[i] === q.answer ? 1 : 0), 0);
 
   return (
@@ -124,7 +139,7 @@ export default function App() {
           </TouchableOpacity>
         ))}
         {isQuizCategory && <View style={styles.quiz}>
-          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' ? 'Çalışma Mevzuatı ile İlgili Bilgiler-2026' : selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? 'Çalışanların Yasal Hak ve Sorumlulukları-2026' : selected === 'İşyeri Temizliği ve Düzeni' ? 'İşyeri Temizliği ve Düzeni-2026' : selected === 'Meslek Hastalıklarının Sebepleri' ? 'Meslek Hastalıklarının Sebepleri-2026' : 'İş Kazası ve Meslek Hastalığından Doğan Hukuki Sonuçlar-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
+          <View style={styles.quizHeader}><Text style={styles.quizTitle}>{selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' ? 'Çalışma Mevzuatı ile İlgili Bilgiler-2026' : selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? 'Çalışanların Yasal Hak ve Sorumlulukları-2026' : selected === 'İşyeri Temizliği ve Düzeni' ? 'İşyeri Temizliği ve Düzeni-2026' : selected === 'Meslek Hastalıklarının Sebepleri' ? 'Meslek Hastalıklarının Sebepleri-2026' : selected === 'Biyolojik ve Psikososyal Risk Etmenleri' ? 'Biyolojik ve Psikososyal Risk Etmenleri-2026' : 'İş Kazası ve Meslek Hastalığından Doğan Hukuki Sonuçlar-2026'}</Text><Text style={styles.quizProgress}>{Object.keys(answers).length}/{activeQuestions.length} yanıtlandı  •  Doğru: {score}</Text></View>
           {activeQuestions.map((q, index) => {
             const chosen = answers[index];
             return <View key={index} style={styles.questionCard}>
@@ -150,6 +165,7 @@ export default function App() {
             { title: 'İşyeri Temizliği ve Düzeni', questions: cleaningQuestions },
             { title: 'İş Kazası ve Meslek Hastalığı', questions: accidentQuestions },
             { title: 'Meslek Hastalıklarının Sebepleri', questions: occupationalDiseaseQuestions },
+            { title: 'Biyolojik ve Psikososyal Risk Etmenleri', questions: bioPsychosocialQuestions },
           ].map(category => <View key={category.title} style={styles.answerItem}><Text style={styles.answerHeading}>{category.title}:</Text><Text style={styles.answerOnly}>{category.questions.map((q, index) => `${index + 1}:${String.fromCharCode(65 + q.answer)}`).join('  ')}</Text></View>)}<TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
         {filtered.length === 0 && !selected && <Text style={styles.empty}>Bu aramayla eşleşen kategori bulunamadı.</Text>}
         <Text style={styles.footer}>AgaçİSG • Öğren, önle, güvenle çalış.</Text>

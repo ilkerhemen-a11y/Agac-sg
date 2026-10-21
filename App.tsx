@@ -69,7 +69,7 @@ export default function App() {
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, number>>({});
-  useEffect(() => { Alert.alert('Bildiri', 'Lütfen soru ve cevapları kontrol ederek işleminize devam edin.'); }, []);
+  useEffect(() => { Alert.alert('Bilgilendirme', 'AgaçİSG uygulamasındaki soru ve cevaplar bilgilendirme ve eğitim amacıyla Chatcpt ile hazırlanmıştır. Lütfen içerikleri kontrol ederek güncel mevzuat ve işyeri talimatları doğrultusunda değerlendiriniz.\n\nİyi çalışmalar dileriz. İlker Ertürk 👍'); }, []);
   const filtered = useMemo(() => categories.filter(c => (c.title + ' ' + c.subtitle).toLocaleLowerCase('tr-TR').includes(search.toLocaleLowerCase('tr-TR'))), [search]);
   const isQuizCategory = selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' || selected === 'Çalışanların Yasal Hak ve Sorumlulukları' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı';
   const activeQuestions = selected === 'Çalışanların Yasal Hak ve Sorumlulukları' ? laborRightsQuestions : selected === 'İşyeri Temizliği ve Düzeni' ? cleaningQuestions : selected === 'İş Kazası ve Meslek Hastalığı' ? accidentQuestions : questions;

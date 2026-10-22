@@ -9,7 +9,7 @@
       "package": "com.agacisg.app",
       "versionCode": 1,
       "adaptiveIcon": {
-        "foregroundImage": "./assets/agacisg-icon.svg",
+        "foregroundImage": "./assets/agacisg-icon.png",
         "backgroundColor": "#0B3D2E"
       }
     },
@@ -22,6 +22,6 @@
     "experiments": {
       "baseUrl": "/Agac-sg"
     },
-    "icon": "./assets/agacisg-icon.svg"
+    "icon": "./assets/agacisg-icon.png"
   }
 }

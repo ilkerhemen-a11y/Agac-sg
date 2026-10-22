@@ -24,6 +24,10 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Convert app icon SVG to PNG
+        run: |
+          npm install --no-save sharp
+          node -e "require('sharp')('assets/agacisg-icon.svg').resize(1024,1024).png().toFile('assets/agacisg-icon.png').then(()=>console.log('Android-compatible PNG icon generated'))"
       - name: Generate Android project
         run: npx expo prebuild --platform android --no-install
         env:

@@ -1,15 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-<defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55d63d"/><stop offset=".5" stop-color="#198b38"/><stop offset="1" stop-color="#003b2a"/></linearGradient>
-  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55d83b"/><stop offset=".52" stop-color="#16833a"/><stop offset="1" stop-color="#00442e"/></linearGradient>
-</defs>
-<rect width="1024" height="1024" rx="190" fill="url(#bg)"/>
-<rect x="95" y="95" width="834" height="834" rx="175" fill="url(#panel)"/>
-<g fill="#fff">
-  <path d="M512 170 C500 207 488 225 467 239 L484 235 C466 258 449 270 426 278 L448 281 C431 301 413 312 389 319 C406 332 426 332 444 326 C424 347 405 359 378 364 C399 379 421 374 441 366 C421 390 397 402 365 408 C388 426 413 422 437 414 C416 436 393 448 361 453 C386 471 413 466 437 458 C417 478 396 489 368 495 C395 514 421 508 445 500 C423 520 401 532 374 536 C400 555 426 550 451 542 C428 565 406 576 378 580 C408 601 434 592 460 584 C439 606 417 620 389 625 C416 644 445 636 468 627 L500 601 L500 558 L512 549 L524 558 L524 601 L556 627 C579 636 608 644 635 625 C607 620 585 606 564 584 C590 592 616 601 646 580 C618 576 596 565 573 542 C598 550 624 555 650 536 C623 532 601 520 579 500 C603 508 629 514 656 495 C628 489 607 478 587 458 C611 466 638 471 663 453 C631 448 608 436 587 414 C611 422 636 426 659 408 C627 402 603 390 583 366 C603 374 625 379 646 364 C619 359 600 347 580 326 C598 332 618 332 635 319 C611 312 593 301 576 281 L598 278 C575 270 558 258 540 235 L557 239 C536 225 524 207 512 170 Z"/>
-  <path d="M500 601 L256 800 L319 780 L357 801 L411 754 L445 780 L512 729 L579 780 L613 754 L667 801 L705 780 L768 800 L524 601 L524 640 L704 774 L667 755 L613 780 L579 745 L512 797 L445 745 L411 780 L357 755 L319 774 L500 640 Z"/>
-  <path d="M512 665 L352 816 L405 788 L440 812 L512 761 L584 812 L619 788 L672 816 Z"/>
-  <path d="M288 829 L411 794 L438 817 L512 768 L586 817 L613 794 L736 829 L704 829 L613 811 L586 831 L512 783 L438 831 L411 811 L320 829 Z"/>
-</g>
-<text x="512" y="884" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="103" font-weight="400" fill="#fff">ağaçisg</text>
-</svg>
+<defs><radialGradient id="bg" cx="50%" cy="40%" r="75%"><stop stop-color="#06284a"/><stop offset="1" stop-color="#020514"/></radialGradient><linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#38faff"/><stop offset="1" stop-color="#087cff"/></linearGradient><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="1024" height="1024" rx="190" fill="url(#bg)"/><rect x="80" y="80" width="864" height="864" rx="145" fill="#04152e" stroke="#087bff" stroke-width="5" filter="url(#glow)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+<path d="M310 245 V190 H470 M665 190 H725 L760 225 H790" stroke="#12dfff" stroke-width="5"/><path d="M345 840 V275 Q345 250 370 250 H620 L720 350 V815 Q720 840 695 840 H370 Q345 840 345 815" stroke="#22ff77" stroke-width="7"/>
+<path d="M300 300 H620 L710 390 V760 H300 Z" stroke="url(#cyan)" stroke-width="9"/><path d="M620 300 V390 H710" stroke="#28eaff" stroke-width="8"/>
+<circle cx="350" cy="330" r="20" stroke="#20e8ff" stroke-width="5"/><circle cx="350" cy="330" r="8" stroke="#20e8ff" stroke-width="5"/>
+<path d="M410 370 H535 M410 410 H600 M410 450 H560" stroke="#26dcff" stroke-width="8"/>
+<rect x="410" y="500" width="65" height="65" rx="4" stroke="#26dcff" stroke-width="7"/><path d="M428 531 L450 550 L500 490" stroke="#22ff79" stroke-width="9"/>
+<path d="M415 630 L435 650 L466 610 M485 630 H640 M415 685 L435 705 L466 665 M485 685 H600 M415 740 L435 760 L466 720 M485 740 H565" stroke="#28eaff" stroke-width="7"/>
+<path d="M650 500 L700 450 L725 475 L675 525 L650 500 Z M650 500 L635 545 L675 525 M700 450 L725 425" stroke="#28eaff" stroke-width="7"/>
+<path d="M250 360 L220 390 V470 L250 500 M245 710 L220 740 V795 L250 825" stroke="#0d8cff" stroke-width="5"/><path d="M770 320 V450 L745 475 M770 620 V700" stroke="#23ff83" stroke-width="5"/><circle cx="230" cy="520" r="7" fill="#28eaff" stroke="none"/><circle cx="775" cy="755" r="7" fill="#22ff83" stroke="none"/>
+</g><text x="512" y="900" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="94" font-weight="700" fill="#f5ffff" filter="url(#glow)">ağaçisg</text></svg>

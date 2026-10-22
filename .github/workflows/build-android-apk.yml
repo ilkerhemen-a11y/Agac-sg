@@ -37,6 +37,56 @@ jobs:
       - name: Generate Android project
         run: CI=1 npx expo prebuild --platform android
 
+      - name: Fix Android namespace and BuildConfig generation
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          namespace = "com.agacisg.app"
+          gradle = Path("android/app/build.gradle")
+          lines = gradle.read_text().splitlines()
+          for index, line in enumerate(lines):
+              if line.strip().startswith("namespace "):
+                  indent = line[:len(line) - len(line.lstrip())]
+                  lines[index] = indent + f'namespace "{namespace}"'
+                  break
+          else:
+              raise SystemExit("Could not find namespace in android/app/build.gradle")
+
+          content = "\\n".join(lines) + "\\n"
+          if "buildFeatures {" not in content:
+              content = content.replace(
+                  "android {",
+                  "android {\\n    buildFeatures {\\n        buildConfig = true\\n    }",
+                  1,
+              )
+          elif "buildConfig = true" not in content and "buildConfig true" not in content:
+              content = content.replace(
+                  "buildFeatures {",
+                  "buildFeatures {\\n        buildConfig = true",
+                  1,
+              )
+          gradle.write_text(content)
+
+          for file in (
+              Path("android/app/src/main/java/com/agacisg/app/MainActivity.kt"),
+              Path("android/app/src/main/java/com/agacisg/app/MainApplication.kt"),
+          ):
+              if not file.exists():
+                  raise SystemExit(f"Expected generated Kotlin file is missing: {file}")
+              source_lines = file.read_text().splitlines()
+              if not source_lines or not source_lines[0].startswith("package "):
+                  raise SystemExit(f"Could not find package declaration in {file}")
+              source_lines[0] = f"package {namespace}"
+              file.write_text("\\n".join(source_lines) + "\\n")
+              print(f"Corrected package declaration: {file}")
+
+          print("Android namespace and BuildConfig generation configured")
+          PY
+          grep -nE 'namespace|buildFeatures|buildConfig' android/app/build.gradle
+          head -n 2 android/app/src/main/java/com/agacisg/app/MainActivity.kt
+          head -n 2 android/app/src/main/java/com/agacisg/app/MainApplication.kt
+
       - name: Build APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon

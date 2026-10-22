@@ -34,6 +34,11 @@ jobs:
       - name: TypeScript check
         run: npm run typecheck
 
+      - name: Convert app icon SVG to PNG
+        run: |
+          npm install --no-save sharp
+          node -e "require('sharp')('assets/agacisg-icon.svg').resize(1024,1024).png().toFile('assets/agacisg-icon.png').then(()=>console.log('Android-compatible PNG icon generated'))"
+
       - name: Generate Android project
         run: CI=1 npx expo prebuild --platform android
 

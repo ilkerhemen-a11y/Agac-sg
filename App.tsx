@@ -412,6 +412,7 @@ export default function App() {
             { title: 'Elektrik, Tehlikeleri, Riskleri ve Önlemleri', questions: electricalSafetyQuestions },
             { title: 'Yüksekte Çalışmalarda ve Kapalı Ortam Çalışmalarında İş Güvenliği', questions: heightConfinedSpaceQuestions },
             { title: 'Kondens, Kimyasal Yanıklar, Elektrik Çarpmalarından Korunma', questions: burnsChemicalElectricQuestions },
+            { title: 'Elle Kaldırma ve Taşıma', questions: [{ answer: 1 }, { answer: 2 }, { answer: 2 }, { answer: 2 }, { answer: 0 }, { answer: 0 }, { answer: 0 }, { answer: 2 }, { answer: 0 }, { answer: 1 }] },
           ].map(category => <View key={category.title} style={styles.answerItem}><Text style={styles.answerHeading}>{category.title}:</Text><Text style={styles.answerOnly}>{category.questions.map((q, index) => `${index + 1}:${String.fromCharCode(65 + q.answer)}`).join('  ')}</Text></View>)}<TouchableOpacity onPress={() => setSelected(null)}><Text style={styles.backLink}>← Kategorilere dön</Text></TouchableOpacity></View>}
         {filtered.length === 0 && !selected && <Text style={styles.empty}>Bu aramayla eşleşen kategori bulunamadı.</Text>}
         <Text style={styles.footer}>AgaçİSG • Öğren, önle, güvenle çalış.</Text>

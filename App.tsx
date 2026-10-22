@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Question = { question: string; options: string[]; answer: number; explanation: string };
 
@@ -331,6 +332,9 @@ export default function App() {
   const [selected, setSelected] = useState<string | null>(null);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [completedExtraAnswers, setCompletedExtraAnswers] = useState<Record<string, boolean>>({});
+  const [completionLoaded, setCompletionLoaded] = useState(false);
+  useEffect(() => { AsyncStorage.getItem('agacisg_extra_answers_completed_v1').then(value => { if (value) setCompletedExtraAnswers(JSON.parse(value)); }).catch(() => {}).finally(() => setCompletionLoaded(true)); }, []);
+  useEffect(() => { if (completionLoaded) AsyncStorage.setItem('agacisg_extra_answers_completed_v1', JSON.stringify(completedExtraAnswers)).catch(() => {}); }, [completedExtraAnswers, completionLoaded]);
   useEffect(() => { Alert.alert('Bilgilendirme', 'AgaçİSG uygulamasındaki soru ve cevaplar bilgilendirme ve eğitim amacıyla Chatcpt ile hazırlanmıştır. Lütfen içerikleri kontrol ederek güncel mevzuat ve işyeri talimatları doğrultusunda değerlendiriniz.\n\nİyi çalışmalar dileriz. İlker Ertürk 👍'); }, []);
   const filtered = useMemo(() => categories.filter(c => (c.title + ' ' + c.subtitle).toLocaleLowerCase('tr-TR').includes(search.toLocaleLowerCase('tr-TR'))), [search]);
   const isQuizCategory = selected === 'Ekranlı Araçlarla Çalışma' || selected === 'Bulaşıcı Hastalıklardan Korunma, Viral Salgınlarda İş Güvenliği' || selected === 'Kondens, Kimyasal Yanıklar ve Elektrik Çarpmalarından Korunma' || selected === 'Yüksekte Çalışmalar ve Kapalı Ortam Çalışmalarında İş Güvenliği' || selected === 'Acil Durumlar, Tahliye ve Kurtarma' || selected === 'Elektrik, Tehlikeleri, Riskleri ve Önlemleri' || selected === 'Parlama, Patlama, Yangın ve Yangından Korunma' || selected === 'Sağlık ve Güvenlik İşaretleri' || selected === 'Kişisel Koruyucu Donanım Kullanımı' || selected === 'Kimyasal, Fiziksel ve Ergonomik Risk Etmenleri' || selected === 'İş Ekipmanlarının Güvenli Kullanımı' || selected === 'İş Kazalarının Sebepleri ve Korunma Prensipleri ile Tekniklerinin Uygulanması' || selected === 'İlk Yardım' || selected === 'Çalışma Mevzuatı ile İlgili Bilgiler' || selected === 'Çalışanların Yasal Hak ve Sorumlulukları' || selected === 'İşyeri Temizliği ve Düzeni' || selected === 'İş Kazası ve Meslek Hastalığı' || selected === 'Meslek Hastalıklarının Sebepleri' || selected === 'Biyolojik ve Psikososyal Risk Etmenleri' || selected === 'Bağımlılık Yapıcı Maddelerin Zararları ve Teknoloji Bağımlılığı' || selected === 'Hastalıklardan Korunma Prensipleri ve Korunma Tekniklerinin Uygulanması' || selected === 'İş Sağlığı ve Güvenliği Genel Kuralları ve Güvenlik Kültürü';

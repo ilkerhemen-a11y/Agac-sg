@@ -53,17 +53,17 @@ jobs:
           else:
               raise SystemExit("Could not find namespace in android/app/build.gradle")
 
-          content = "\\n".join(lines) + "\\n"
+          content = "\n".join(lines) + "\n"
           if "buildFeatures {" not in content:
               content = content.replace(
                   "android {",
-                  "android {\\n    buildFeatures {\\n        buildConfig = true\\n    }",
+                  "android {\n    buildFeatures {\n        buildConfig = true\n    }",
                   1,
               )
           elif "buildConfig = true" not in content and "buildConfig true" not in content:
               content = content.replace(
                   "buildFeatures {",
-                  "buildFeatures {\\n        buildConfig = true",
+                  "buildFeatures {\n        buildConfig = true",
                   1,
               )
           gradle.write_text(content)
@@ -78,7 +78,7 @@ jobs:
               if not source_lines or not source_lines[0].startswith("package "):
                   raise SystemExit(f"Could not find package declaration in {file}")
               source_lines[0] = f"package {namespace}"
-              file.write_text("\\n".join(source_lines) + "\\n")
+              file.write_text("\n".join(source_lines) + "\n")
               print(f"Corrected package declaration: {file}")
 
           print("Android namespace and BuildConfig generation configured")

@@ -7,7 +7,11 @@
     "userInterfaceStyle": "light",
     "android": {
       "package": "com.agacisg.app",
-      "versionCode": 1
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/agacisg-icon.svg",
+        "backgroundColor": "#0B3D2E"
+      }
     },
     "splash": {
       "backgroundColor": "#0B3D2E"
@@ -17,6 +21,7 @@
     ],
     "experiments": {
       "baseUrl": "/Agac-sg"
-    }
+    },
+    "icon": "./assets/agacisg-icon.svg"
   }
 }
